@@ -1,8 +1,15 @@
+import 'package:blog_app/core/secrets/app_screts.dart';
 import 'package:blog_app/core/theme/theme.dart';
-import 'package:blog_app/presentation/pages/signup_page.dart';
+import 'package:blog_app/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: AppScrets.supaBaseUrl,
+    anonKey: AppScrets.supaBaseAnonKey,
+  );
   runApp(const MyApp());
 }
 
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.darkThemeMode,
-      home: SignUpPage(),
+      home: const LoginPage(),
     );
   }
 }
